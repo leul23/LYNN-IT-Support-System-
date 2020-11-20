@@ -3,8 +3,10 @@ const router =express.Router();
 const bcrypt= require('bcryptjs');
 const passport= require('passport');
 
+
  // user model
- const User = require('../models/User');
+const User = require('../models/User');
+// const { getMaxListeners } = require('../models/User');
 
 router.get('/',(req,res)=>res.render('index'));
 
@@ -46,10 +48,14 @@ router.post('/register',(req,res)=>{
         Email,
         Signup_username,
         signup_password,
-        signup_confirm_password
+        signup_confirm_password,
+        Signup_plan
     });
     } else {
-    User.findOne({ Email: Email }).then(user => {
+    
+        
+    User.findOne({ Email: Email })
+        .then(user => {
         if (user) {
         errors.push({ msg: 'Email already exists' });
         res.render('register', {
@@ -70,8 +76,12 @@ router.post('/register',(req,res)=>{
             // signup_confirm_password
 
         });
-         console.log(newUser)
+         console.log(newUser);
+         console.log(newUser.Signup_plan);
+         
         // res.send('hello');
+        // fetching data
+             
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.signup_password, salt, (err, hash) => {
 
@@ -93,16 +103,54 @@ router.post('/register',(req,res)=>{
     });
     }
 });
-
 // login handler
-router.post('/login', (req, res, next)=>{
-    passport.authenticate('local',{
-      successRedirect: '/dashboard',
-      failureRedirect:'/login',
-      failureFlash: true  
-    })(req, res, next);
+router.post('/login',  (req, res, next)=>{
+    
+    // const person = require('../models/User');
+    const Email=req.body.Email;
+    function free_redirect(){
+        passport.authenticate('local',{
+            successRedirect: '/dashboard',
+            failureRedirect:'/login',
+            failureFlash: true  
+          })(req, res, next); 
+    }
+    function standard_redirect(){
+        passport.authenticate('local',{
+            successRedirect: '/dashboard_for_standard',
+            failureRedirect:'/login',
+            failureFlash: true  
+          })(req, res, next);
+    
+    }
+    function premium_redirect(){
+        passport.authenticate('local',{
+            
+            // successRedirect:'aaaa',
+            failureRedirect:'/login',
+            failureFlash: true  
+          })(req, res, next);
+          res.render('aaaa')   
+    }
+    User.findOne({ Email: Email }).then(user => {
+        if(user.Signup_plan=="Free"){
+            free_redirect();
+        }
+        else if(user.Signup_plan=="Standard"){
+            standard_redirect();
+
+        }
+        else {
+            premium_redirect();
+        }      
+    }).catch(err => {
+        
+    })
         
 });
 
 
-module.exports=router; 
+
+
+
+module.exports=router;

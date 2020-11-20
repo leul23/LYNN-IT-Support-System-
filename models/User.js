@@ -27,11 +27,17 @@ const UserSchema=new mongoose.Schema({
     Signup_plan:{
         type:String,
         required:true
-    }
-   
+    },
+    
+        // capped: { size: 1024 },
+        // bufferCommands: false,
+        // autoCreate: false // disable `autoCreate` since `bufferCommands` is false
+      
 
 });
 
 
+
 const User=mongoose.model('User', UserSchema);
 module.exports=User;
+//  User.createCollection();
