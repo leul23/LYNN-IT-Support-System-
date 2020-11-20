@@ -1250,7 +1250,9 @@ input[type='checkbox'] {
 .Login_form_container {
 	padding-top: 6.625rem;	
 	padding-bottom: 5.625rem;	
-	background-color: #153e52;
+	background: linear-gradient(rgba(20, 191, 152, 0.5), rgba(0, 0, 0, 0.5)), url('../images/4.jpg') center center no-repeat;
+    background-size: auto, auto;
+	background-size: cover;
 }
 
 .Login_form_container .text-container {
