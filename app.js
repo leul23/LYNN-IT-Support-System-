@@ -37,12 +37,12 @@ app.use(session({
     saveUninitialized: true,
    
 }));
-// passport middleware
+// passport middleware(for login)
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-// connect flas
+// connect flash(flash messages)
 app.use(flash());
 
 //global vars
@@ -57,4 +57,4 @@ app.use('/',require('./routes/index.js'));
 
  app.use('/index',require('./routes/index.js'));
 const PORT=process.env.PORT||5000;
-app.listen(PORT, console.log('server started on port${PORT}'));
+app.listen(PORT, console.log(`server started on port ${PORT}`));
