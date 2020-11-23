@@ -126,11 +126,11 @@ router.post('/login',  (req, res, next)=>{
     function premium_redirect(){
         passport.authenticate('local',{
             
-            // successRedirect:'aaaa',
+            successRedirect:'login/request',
             failureRedirect:'/login',
             failureFlash: true  
           })(req, res, next);
-          res.render('aaaa')   
+        //   res.render('requests/create')
     }
     User.findOne({ Email: Email }).then(user => {
         if(user.Signup_plan=="Free"){
