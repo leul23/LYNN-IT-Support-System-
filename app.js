@@ -7,6 +7,10 @@ const flash =require('connect-flash');
 const session =require('express-session');
 const passport= require('passport');
 
+const Request = require('./models/request')
+const methodOverride = require('method-override')
+const RequestRouter = require('./routes/requests')
+
 // passport config
 require('./config/passport')(passport);
 
@@ -52,7 +56,26 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error');
     next();
 });
+//request
+app.use(methodOverride('_method'))
+
+app.get('/request',async (req,res) => {
+    const requests = await Request.find().sort({createdAt: 'desc'})
+    res.render('requests/index', {requests : requests})
+})
+app.get('/login/request',async (req,res) => {
+    const requests = await Request.find().sort({createdAt: 'desc'})
+    res.render('requests/create', {requests : requests})
+})
+app.get('/request/thanks',async (req,res) => {
+    res.render('requests/thanks')
+})
+//this will add Request in url 
+app.use('/requests', RequestRouter)
+
+
 // routes
+
 app.use('/',require('./routes/index.js'));
 
  app.use('/index',require('./routes/index.js'));
