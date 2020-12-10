@@ -47,7 +47,7 @@ function saveArticleAndRedirect(path){
             res.redirect(`/request/thanks`)
             }
             catch (e){
-                res.render('requests/${path}', {request: request})
+                res.render('request/ ${path}', {request: request})
             }
     }
 }
