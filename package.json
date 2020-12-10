@@ -5,13 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "devStart": "nodemon server.js"
+    "dev": "nodemon app.js"
   },
   "author": "Yosef FikreYesus",
   "license": "ISC",
   "keywords": [],
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "check-password-strength": "^1.0.15",
     "connect-flash": "^0.1.1",
     "dompurify": "^2.2.2",
     "ejs": "^3.1.5",
@@ -24,7 +25,8 @@
     "mongoose": "^5.10.11",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "slugify": "^1.4.6"
+    "slugify": "^1.4.6",
+    "socket.io": "^3.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
