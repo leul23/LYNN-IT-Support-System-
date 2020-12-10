@@ -56,7 +56,15 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error');
     next();
 });
-//request
+// routes
+app.use('/',require('./routes/index.js'));
+// app.use('/Accounts',require('./routes/Accounts.js'));
+
+
+//  app.use('/index',require('./routes/index.js'));
+// app.use('/Accounts',require('./routes/Accounts.js'));
+
+ //request
 app.use(methodOverride('_method'))
 
 app.get('/request',async (req,res) => {
@@ -73,11 +81,6 @@ app.get('/request/thanks',async (req,res) => {
 //this will add Request in url 
 app.use('/requests', RequestRouter)
 
-
-// routes
-
-app.use('/',require('./routes/index.js'));
-
- app.use('/index',require('./routes/index.js'));
+ 
 const PORT=process.env.PORT||5000;
 app.listen(PORT, console.log(`server started on port ${PORT}`));
