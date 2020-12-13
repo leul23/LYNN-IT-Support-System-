@@ -388,6 +388,7 @@ input[type='checkbox'] {
 	transition: all 0.2s;
 }
 
+
 .form-control-submit-button:hover {
 	background-color: transparent;
 	color: #14bf98;
@@ -2541,4 +2542,14 @@ box-shadow: 1px 1px 20px  #888888;
 	font: 400 0.875rem/1.375rem "Open Sans", sans-serif;
 	transition: all 0.2s;
 	-webkit-appearance: none; /* removes inner shadow on form inputs on ios safari */
+}
+
+/* request form */
+#Request_form{
+
+	background-color: white;
+	padding: 50px;
+	border-radius: 0px;
+	width:200px;
+	border: 1px solid #808080;
 }
