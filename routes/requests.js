@@ -44,10 +44,10 @@ function saveArticleAndRedirect(path){
         
             try {
             request = await request.save()
-            res.redirect(`/request/thanks`)
+            res.redirect(`/premium_page`)
             }
             catch (e){
-                res.render('request/ ${path}', {request: request})
+                res.render('requests/show', {request: request})
             }
     }
 }

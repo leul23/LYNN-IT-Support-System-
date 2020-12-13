@@ -31,7 +31,8 @@ router.get('/terms-conditions',(req,res)=>res.render('terms-conditions'));
 router.get('/login',(req,res)=>res.render('login'));
 router.get('/register',(req,res)=>res.render('register'));
 router.get('/privacy-policy',(req,res)=>res.render('privacy-policy'));
-router.get('/privacy-policy',(req,res)=>res.render('privacy-policy'));
+router.get('/index',(req,res)=>res.render('index'));
+router.get('/premium_page',(req,res)=>res.render('premium_page'));
 
 
 router.post('/register',(req,res)=>{
@@ -146,7 +147,7 @@ router.post('/login',  (req, res, next)=>{
     }
     function standard_redirect(){
         passport.authenticate('local',{
-            successRedirect: '/dashboard_for_standard',
+            successRedirect: '/login/request',
             failureRedirect:'/login',
             failureFlash: true  
           })(req, res, next);
@@ -156,7 +157,7 @@ router.post('/login',  (req, res, next)=>{
     function premium_redirect(){
         passport.authenticate('local',{
             
-            successRedirect:'login/request',
+            successRedirect:'premium_page',
             failureRedirect:'/login',
             failureFlash: true  
           })(req, res, next);
