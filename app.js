@@ -11,6 +11,80 @@ const Request = require('./models/request')
 const methodOverride = require('method-override')
 const RequestRouter = require('./routes/requests')
 
+const Plan = require('./models/plan')
+const PlanRouter = require('./routes/plans')
+
+
+//**********chat */
+
+const path = require('path');
+const http = require('http');
+
+const socketio = require('socket.io');
+const formatMessage = require('./utils/messages');
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers
+} = require('./utils/users');
+
+
+const server = http.createServer(app);
+const io = socketio(server);
+const ChatName = 'LYNN CHAT ';
+io.on('connection', socket => {
+    socket.on('joinRoom', ({ username, room }) => {
+      const user = userJoin(socket.id, username, room);
+  
+      socket.join(user.room);
+  
+      // Welcome current user
+      socket.emit('message', formatMessage(ChatName, 'Welcome to LYNN CHAT!'));
+  
+      // Broadcast when a user connects
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          'message',
+          formatMessage(ChatName, `${user.username} has joined the chat`)
+        );
+  
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    });
+  
+    // Listen for chatMessage
+    socket.on('chatMessage', msg => {
+      const user = getCurrentUser(socket.id);
+  
+      io.to(user.room).emit('message', formatMessage(user.username, msg));
+    });
+  
+    // Runs when client disconnects
+    socket.on('disconnect', () => {
+      const user = userLeave(socket.id);
+  
+      if (user) {
+        io.to(user.room).emit(
+          'message',
+          formatMessage(ChatName, `${user.username} has left the chat`)
+        );
+  
+        // Send users and room info
+        io.to(user.room).emit('roomUsers', {
+          room: user.room,
+          users: getRoomUsers(user.room)
+        });
+      }
+    });
+  });
+
+//**********chat */
+
 // passport config
 require('./config/passport')(passport);
 
@@ -81,6 +155,24 @@ app.get('/request/thanks',async (req,res) => {
 //this will add Request in url 
 app.use('/requests', RequestRouter)
 
+
+ //plan
+ app.use(methodOverride('_method'))
+
+ app.get('/plan',async (req,res) => {
+     const plans = await Plan.find().sort({createdAt: 'desc'})
+     res.render('plans/index', {plans : plans})
+ })
+ app.get('/login/plan',async (req,res) => {
+     const plans = await Plan.find().sort({createdAt: 'desc'})
+     res.render('plans/create', {plans : plans})
+ })
+ app.get('/plan/thanks',async (req,res) => {
+     res.render('plans/thanks')
+ })
+ //this will add Request in url 
+ app.use('/plans', PlanRouter)
+
  
 const PORT=process.env.PORT||5000;
-app.listen(PORT, console.log(`server started on port ${PORT}`));
+server.listen(PORT, console.log(`server started on port ${PORT}`));
