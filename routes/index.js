@@ -2,6 +2,8 @@ const express = require('express');
 const router =express.Router();
 const bcrypt= require('bcryptjs');
 const passport= require('passport');
+const {ensureAuthenticated}=require('../config/auth');
+
 
 //password strong cheker
 const passwordStrength = require('check-password-strength')
@@ -33,6 +35,10 @@ router.get('/register',(req,res)=>res.render('register'));
 router.get('/privacy-policy',(req,res)=>res.render('privacy-policy'));
 router.get('/index',(req,res)=>res.render('index'));
 router.get('/premium_page',(req,res)=>res.render('premium_page'));
+router.get('/Create_room',ensureAuthenticated, (req,res)=>res.render('Create_room',{name:req.user.name}));
+router.get('/Start_chat',(req,res)=>res.render('Start_chat'));
+router.get('/bot',(req,res)=>res.render('bot'));
+
 
 
 router.post('/register',(req,res)=>{
@@ -139,7 +145,7 @@ router.post('/login',  (req, res, next)=>{
     const Email=req.body.Email;
     function free_redirect(){
         passport.authenticate('local',{
-            successRedirect: '/aaa',
+            successRedirect: '/bot',
             failureRedirect:'/login',
             failureFlash: true  
           })(req, res, next); 
@@ -147,7 +153,7 @@ router.post('/login',  (req, res, next)=>{
     }
     function standard_redirect(){
         passport.authenticate('local',{
-            successRedirect: '/login/request',
+            successRedirect: '/Create_room',
             failureRedirect:'/login',
             failureFlash: true  
           })(req, res, next);
@@ -174,23 +180,23 @@ router.post('/login',  (req, res, next)=>{
                 standard_redirect();
 
             }
-            else if(user.Signup_plan=="Premium"){
+            else {
                 premium_redirect();
             } 
-            else{
-                passport.authenticate('local',{
+        //     else{
+        //         passport.authenticate('local',{
                 
-                    successRedirect:'aaaa',
-                    failureRedirect:'/login',
-                    failureFlash: true  
-                })(req, res, next);
-                res.render('aaaa')   
+        //             successRedirect:'aaaa',
+        //             failureRedirect:'/login',
+        //             failureFlash: true  
+        //         })(req, res, next);
+        //         res.render('aaaa')   
 
-        }}
+        // }
+    }
         
         else{
             passport.authenticate('local',{
-                successRedirect: '/dashboard_for_standard',
                 failureRedirect:'/login',
                 failureFlash: true  
               })(req, res, next); 
@@ -200,7 +206,12 @@ router.post('/login',  (req, res, next)=>{
     })
         
 });
-
+//logout handle
+router.get('/logout',(req,res)=>{
+    req.logout();
+    req.flash('success_msg', 'you are loggedout');
+    res.redirect('/login');
+});
 
 
 
