@@ -14,18 +14,63 @@
 
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
     <title>Request</title>
-</head>
-<body>
-    <div class="container mb-3">
-        <h1 class="mb-4"><%= request.title %></h1>
-        <div class="text-muted">
-            <%= request.createdAt.toLocaleDateString() %>
-        </div>
-        <a href="/request" class="btn btn-secondary">All  Request</a>
-        <a href="/requests/edit/<%= request.id %>" class="btn btn-info">Edit</a>
-        <div><%- request.markdown %></div>
-    </div>
 
+<link rel="icon" href="../images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+   
+    <!-- Navbar -->
+        <!-- Navbar -->
+        <%- include ("../partials/navigation2") %> <!-- end of navbar -->
+        <!-- end of navbar -->
+    <!-- end of navbar -->
+    <div id="Login" class="planreq">
+
+        <div class="container mb-3">
+            <br><br><br>
+        <table class="table table-striped bg-white">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                    <td><%= request.title %></td>
+                    <td><%= request.createdAt.toLocaleDateString() %></td>
+                    <td><%= request.description %></td>
+                    <td><%= request.location %></td>
+                    <td><%= request.phone%></td>
+                    <td><a href="/request" class="btn btn-secondary">All Requests</a>
+                        <a href="/request/edit/<%= request.id %>" class="btn btn-info">Edit</a></td>
+                  </tr>
+    </tbody>
+  </table>
+
+</div>    <br><br><br><br><br><br><br><br><br><br>
+</div> <!-- end of Login_form_container -->
+<!-- end of Login -->
+
+<%- include ("../partials/footer") %> <!-- end of navbar -->
+
+<!-- Scripts -->
+<script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+<script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+<script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+<script src="js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+<script src="js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+<script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+<script src="js/scripts.js"></script> <!-- Custom scripts -->
 
 </body>
 </html>

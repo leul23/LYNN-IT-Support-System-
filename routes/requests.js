@@ -40,7 +40,8 @@ function saveArticleAndRedirect(path){
         let request = req.request
             request.title = req.body.title,
             request.description = req.body.description,
-            request.markdown = req.body.markdown
+            request.location = req.body.location,
+            request.phone = req.body.phone
         
             try {
             request = await request.save()

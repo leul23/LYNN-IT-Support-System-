@@ -13,9 +13,12 @@ const requestsSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    markdown: {
+    location: {
         type:String,
         required: true
+    },
+    phone: {
+        type: String
     },
     createdAt: {
         type: Date,
@@ -35,8 +38,8 @@ requestsSchema.pre('validate', function (next){
     if(this.title){
         this.slug = slugify(this.title, {lower: true, strict: true})
     }
-    if(this.markdown){
-        this.sanitizedHtml = dompurify.sanitize(marked(this.markdown)) 
+    if(this.location){
+        this.sanitizedHtml = dompurify.sanitize(marked(this.location)) 
         
     }
     next()
