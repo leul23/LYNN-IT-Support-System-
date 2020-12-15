@@ -1,4 +1,47 @@
 
+
+/*****************************************
+Table Of Contents:
+
+01. General Styles
+02. Preloader
+03. Navigation
+04. Header
+05. Intro
+06. Description
+07. Services
+08. Details 1
+09. Details 2
+10. Testimonials
+11. Login
+12. Projects
+13. Project Lightboxes
+14. Team
+15. About
+16. Contact
+17. Footer
+18. Copyright
+19. Back To Top Button
+20. Extra Pages
+21. Media Queries
+******************************************/
+
+/*****************************************
+Colors:
+
+- Backgrounds - light gray #fbfbfb
+- Background - dark blue #153e52
+- Backgrounds navbar, footer - dark gray #113448
+- Buttons, bullets, icons - green #14bf98
+- Headings text - black #484a46
+- Body text - gray #787976
+- Body text - light gray #dfe5ec
+******************************************/
+
+
+/******************************/
+/*     01. General Styles     */
+/******************************/
 body,
 html {
     width: 100%;
@@ -343,6 +386,25 @@ input[type='checkbox'] {
 
 
 .form-control-submit-button:hover {
+	background-color: transparent;
+	color: #14bf98;
+}
+
+.form-control-submit-button-chat{
+	display: inline-block;
+	width: 30%;
+	height: 3.125rem;
+	border: 0.125rem solid #14bf98;
+	border-radius: 0.25rem;
+	background-color: #14bf98;
+	color: #fff;
+	font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+
+.form-control-submit-button-chat:hover {
 	background-color: transparent;
 	color: #14bf98;
 }
@@ -1195,6 +1257,53 @@ input[type='checkbox'] {
 
 .slider .testimonial-author {
 	color: #484a46;
+}
+
+/**********************/
+/*     11. planreq    */
+/**********************/
+.planreq {
+	padding-top: 6.625rem;	
+	padding-bottom: 5.625rem;	
+	background: linear-gradient(rgba(20, 191, 152, 0.5), rgba(0, 0, 0, 0.5)), url('../images/3.jpg') center center no-repeat;
+    background-size: auto, auto;
+	background-size: cover;
+}
+
+.planreq .text-container {
+	margin-bottom: 4rem;
+	padding-top:50px;
+	padding-left: 50px;
+}
+
+.planreq .section-title {
+	margin-bottom: 0.5rem;
+}
+
+.planreq h2 {
+	margin-bottom: 1.375rem;
+	color: #fff;
+}
+
+.planreq .list-unstyled .fas {
+	color: #14bf98;
+	font-size: 0.5rem;
+	line-height: 1.375rem;
+}
+
+.planreq .list-unstyled .media-body {
+	margin-left: 0.625rem;
+}
+
+.planreq .label-control {
+	color: gray;
+}
+
+.planreq .form-control-input,
+.planreq .form-control-select {
+	border: 1px solid gray;
+	background-color: white;
+	color:black;
 }
 
 

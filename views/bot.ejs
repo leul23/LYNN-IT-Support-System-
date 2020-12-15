@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="LYNN is an online It support website">
-    <meta name="author" content="LYNN">
+    <meta name="description" content="LYNN is a business focused HTML landing page template built with Bootstrap to help you create lead generation websites for companies and their services.">
+    <meta name="author" content="Inovatik">
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
 	<meta property="og:site_name" content="" /> <!-- website name -->
@@ -47,74 +47,59 @@
 
     <!-- Navbar -->
         <!-- Navbar -->
-        <%- include ("./partials/navigation2") %> <!-- end of navbar -->
+        <%- include ("./partials/free_navigation") %> <!-- end of navbar -->
         <!-- end of navbar -->
     <!-- end of navbar -->
-
-    <!-- Login -->
-    <div id="Login" class="Login_form_container">
-        <br><br><br><br><br><div class="container">
+   
+    
+    <!-- Signup -->
+    <div id="Signup" class="Signup_form_container">
+   <br><br><div class="container">
             <div class="row">
-              
-                <div class="col-lg-6"> 
-                   
-                    <!-- Login Form -->
-                    <form id="Login_form" action="login" method="POST" data-toggle="validator" data-focus="false">
-                        <div class="section-title">Login </div>
-                        <%- include ("./partials/messages") %>
-                         <div class="form-group">
-                            <input type="Email" class="form-control-input" id="Email" name="Email" required>
-                            <label class="label-control" for="Email">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control-input" id="Password" name="Password" required>
-                            <label class="label-control" for="Password">Password</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                       
-                        <div class="form-group checkbox black">
-                            <a href="#">Forgot password?</a>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">Login</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="lmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
-                    </form>
-                    <!-- end of Login_form -->
-                    
-                </div> <!-- end of col -->
-                  <div class="col-lg-6">
+              <div class="col-lg-6">
                     <div class="text-container">
-                        <!--<div class="section-title">Login</div>-->
-                        <h2 class="white">Solve your problem yourself!</h2>
-                        <p class="white">login into your account to benefit from our different service plans. Feel free to Signup            
-if you do not have an account yet.</p>
+                        <!--<div class="section-title">Signup</div>-->
+                        <h2 class="white">Please consalt our helpfull LYNNBOT to help you find simple solutions.</h2>
                         <ul class="list-unstyled li-space-lg white">
                             <li class="media">
                                 <i class="fas fa-square"></i>
-                                <div class="media-body">It's very easy, just login with your usename and password</div>
+                                <div class="media-body">Not satisfied with the bot.</div>
                             </li>
                             <li class="media">
                                 <i class="fas fa-square"></i>
-                                <div class="media-body">interact with our bot to find solution with your specific problem</div>
+                                <div class="media-body">Premium users have access to ONSITE SUPPORT while standard plan gives you access to our EXPERT TECHNICIANS</div>
                             </li>
                             <li class="media">
                                 <i class="fas fa-square"></i>
-                                <div class="media-body">if the bot is not enough chat with our technicians to solve your problem</div>
+                                <div class="media-body">Please upgrade your plan to the premium or standard package for more assisstance.</div>
                             </li>
+                            <a class="btn-solid-lg page-scroll" href="../plans/new">UPGRADE PLAN</a>
                         </ul><br><br><br><br><br><br><br><br>
                     </div>
                 </div> <!-- end of col -->
+                 <div class="col-lg-6"> 
+                   <img src="images/bot.png" alt="">
+                   
+                    
+                         <!--left form-->
+                      
+                         <df-messenger
+                         intent="WELCOME"
+                         chat-title="LYNNBOT"
+                         agent-id="9864bcdf-80ea-4e9d-9339-6e7dce1c611f"
+                         language-code="en"
+                       ></df-messenger>
+                       <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+                       
+                        <!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script> -->
+                </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
-    </div> <!-- end of Login_form_container -->
-    <!-- end of Login -->
-    
-    <%- include ("./partials/footer") %> <!-- end of navbar -->
+    </div> <!-- end of Signup_form_container -->
+    <!-- end of Signup -->
 
+        <%- include ("./partials/footer") %> <!-- end of navbar -->    
+    	
     <!-- Scripts -->
     <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
@@ -126,6 +111,5 @@ if you do not have an account yet.</p>
     <script src="js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
     <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
-
 </body>
 </html>
